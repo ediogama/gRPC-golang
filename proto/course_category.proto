@@ -1,3 +1,5 @@
+// protoc --go_out=. --go-grpc_out=. proto/course_category.proto ----> generate file
+
 syntax = "proto3";
 
 package pb;
