@@ -9,10 +9,11 @@ import (
 	"github.com/ediogama/gRPC-golang/internal/pb"
 	"github.com/ediogama/gRPC-golang/internal/service"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "database.db")
+	db, err := sql.Open("sqlite3", "./db.sqlite")
 	if err != nil {
 		log.Fatalf("could not connect to database: %v", err)
 	}
@@ -26,6 +27,7 @@ func main() {
 
 	// Register the CategoryService to the gRPC server
 	pb.RegisterCategoryServiceServer(grpcServer, categoryService)
+	reflection.Register(grpcServer)
 
 	// Create a new gRPC listener
 	listener, err := net.Listen("tcp", ":50051")
