@@ -33,6 +33,7 @@ message CategoryID {
 
 service CategoryService {
     rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+    rpc CreateCategoryStream(stream CreateCategoryRequest) returns (CategoryList) {}
     rpc ListCategory(blank) returns (CategoryList) {}
     rpc GetCategory(CategoryID) returns (Category) {}
 }
